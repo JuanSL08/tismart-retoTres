@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="bootstrap.min.js"/>
+	
+	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet"/>
+	
+	<title>Plantilla Básica JSF</title>
+</h:head>
+<h:body>
+	<main role="main">  
+	   	<hr></hr>
+      	<div class="container"> 
+	      	<div class="card">
+				<h2 class="card-header">
+				<h:outputText value="Lista Gerentes"></h:outputText>
+				</h2>
+				
+				<div class="card-body">
+					<h:form>
+						<h:commandButton action="#{gerenteBean.nuevo()}" class="btn btn-primary" value="Nuevo Gerente"></h:commandButton>
+						<br></br>
+						<h:dataTable class="table table-hover" value="#{gerenteBean.buscarTodos()}" var="gerente" border="1">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{gerente.idGerente}"></h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Nombres</f:facet>
+								<h:outputText value="#{gerente.descGerente}"></h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Fecha registro</f:facet>
+								<h:outputText value="#{gerente.fechaRegistro}"></h:outputText>
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Acciones</f:facet>
+								<h:commandButton action="#{gerenteBean.editar(gerente.idGerente)}" class="btn btn-success" value="Editar"></h:commandButton>
+								<h:commandButton action="#{gerenteBean.eliminar(gerente.idGerente)}" class="btn btn-danger" value="Eliminar"></h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</div>
+		  	</div>				
+	  	</div>
+	</main>  
+</h:body>
+</html>

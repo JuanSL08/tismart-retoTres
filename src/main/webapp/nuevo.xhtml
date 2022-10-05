@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="bootstrap.min.js"/>
+	
+	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" />
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+	
+	<title>Nuevo Hospital</title>
+</h:head>
+<h:body>
+	<main role="main">     
+	    <hr></hr>
+	    <div class="container col-md-6"> 
+	    	<div class="card">
+				<h3 class="card-header text-center">
+				<strong><h:outputText value="Nuevo Hospital"></h:outputText></strong>
+				</h3>
+				
+				<div class="card-body">
+					<h:form>
+						<div class="container text-left">
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Nombre:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							      	<h:inputText class="form-control" value="#{hospital.nombre}"></h:inputText>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Antigüedad:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							      	<h:inputText class="form-control" value="#{hospital.antiguedad}"></h:inputText>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Área:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							      	<h:inputText class="form-control" value="#{hospital.area}"></h:inputText>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Sede:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							    	<h:selectOneMenu value="#{hospital.sede.idSede}" class="form-select">
+							      		<f:selectItems value="#{sedesLista}" var="sede"
+							      			itemValue="#{sede.idSede}" itemLabel="#{sede.descSede}"/>
+							      	</h:selectOneMenu>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Distrito:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							    	<h:selectOneMenu value="#{hospital.distrito.idDistrito}" class="form-select">
+							      		<f:selectItems value="#{distritosLista}" var="distrito"
+							      			itemValue="#{distrito.idDistrito}" itemLabel="#{distrito.descDistrito}"/>
+							      	</h:selectOneMenu>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Gerente:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							    	<h:selectOneMenu value="#{hospital.gerente.idGerente}" class="form-select">
+							      		<f:selectItems value="#{gerentesLista}" var="gerente"
+							      			itemValue="#{gerente.idGerente}" itemLabel="#{gerente.descGerente}"/>
+							      	</h:selectOneMenu>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Condición:"></h:outputText>
+							    </div>
+							    <div class="col-8">
+							    	<h:selectOneMenu value="#{hospital.condicion.idCondicion}" class="form-select">
+							      		<f:selectItems value="#{condicionesLista}" var="condicion"
+							      			itemValue="#{condicion.idCondicion}" itemLabel="#{condicion.descCondicion}"/>
+							      	</h:selectOneMenu>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-4">
+							      	<h:outputText value="Fecha registro:"></h:outputText>
+							    </div>
+							    <div class="col-8 text-center">
+							    	<p:calendar value="#{hospital.fechaRegistro}"></p:calendar>
+							    </div>
+					  		</div>
+					  		<div class="row">
+							    <div class="col-12">
+							      	<p></p>
+							    </div>
+					  		</div>
+					  		<div class="row text-center">
+							    <div class="col-12">
+							      	<h:commandButton action="#{hospitalController.guardar(hospital)}" class="btn btn-success" value="Guardar"></h:commandButton>
+							    </div>
+					  		</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<footer class="footer">    
+		<h:form>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col">
+			    </div>
+			    <div class="col">
+			    </div>
+			    <div class="col">
+			    	<h:commandButton action="#{homeController.regresarHome()}" class="btn btn-secondary" value="Menú principal">
+					</h:commandButton>
+			    </div>
+			    <div class="col">
+			    	<h:commandButton action="#{hospitalController.buscarPersonalizado()}" class="btn btn-secondary" value="Buscar">
+					</h:commandButton>
+			    </div>
+			    <div class="col">
+			    </div>
+			    <div class="col">
+			    </div>
+			</div>
+		</div>
+		</h:form>
+    </footer> 
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+      $(function () {
+          $("#fechaRegistro").datepicker({dateFormat: 'dd/mm/yyyy'});
+        }
+      );
+    </script>
+</h:body>
+</html>
